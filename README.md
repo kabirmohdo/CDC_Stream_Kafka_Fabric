@@ -203,7 +203,7 @@ Multiple Docker containers can be defined and configured as a single application
 Create a new file called docker-compose.yml in your project folder and put in the following command.
 👉🏽👉🏽👉🏽 
 
-
+👉🏽 **Click:** [Docker-compose.yml](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/docker-compose.yml)
 
 
 
