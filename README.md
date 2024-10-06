@@ -115,6 +115,68 @@ set VERSION=13
 set DATABASE_NAME=xxxxxxxxxxxxxxxxx
 ```
 
+### Create a PostgreSQL Flexible Server
+Use the command below to create a flexible server in Azure PostgreSQL that will be needed for our CDC functionality.
+
+```
+az postgres flexible-server create ^
+    --resource-group %RESOURCE_GROUP% ^
+    --name %SERVER_NAME% ^
+    --location %LOCATION% ^
+    --admin-user %ADMIN_USER% ^
+    --admin-password %ADMIN_PASSWORD% ^
+    --sku-name %SKU% ^
+    --storage-size %STORAGE_SIZE% ^
+    --version %VERSION%
+```
+### Configure wal_level
+Using the command to configure the server to logical which supports CDC in the PostgreSQL Database.
+
+```
+az postgres flexible-server parameter set ^
+    --resource-group %RESOURCE_GROUP% ^
+    --server-name %SERVER_NAME% ^
+    --name wal_level ^
+    --value logical
+```
+
+### Create a firewall rule to allow connections (Optional)
+For development purposes, I would enable the developer to access the database server just for development purposes.
+
+```
+az postgres flexible-server firewall-rule create ^
+    --resource-group %RESOURCE_GROUP% ^
+    --name %SERVER_NAME% ^  
+    --rule-name AllowAllIPs ^  
+    --start-ip-address 0.0.0.0 ^
+    --end-ip-address 255.255.255.255
+```
+
+### Display the connection string
+This command below is used to generate the connection string if needed for connecting to a 3rd party application.
+
+```
+az postgres flexible-server show-connection-string --server-name %SERVER_NAME%
+```
+
+### Create the PostgreSQL database
+Use this command to create a database in the PostgreSQL Server.
+
+```
+az postgres flexible-server db create ^
+    --resource-group %RESOURCE_GROUP% ^
+    --server-name %SERVER_NAME% ^
+    --database-name %DATABASE_NAME%
+```
+
+### Privileges
+Superuser Privileges: Ensure that the PostgreSQL user you’re using for Debezium has the SUPERUSER privilege. Alternatively, the user must have the REPLICATION role.
+```
+ALTER USER temidayo WITH REPLICATION;
+```
+
+
+
 
 
 
