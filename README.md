@@ -24,10 +24,15 @@ This project will be divided into several sections to aid readers in understandi
 ## Prerequisite
 To follow along with this project the following requirements are needed
 ●	Basic Python Knowledge
+
 ●	Docker Desktop Installed
+
 ●	Azure Subscription
+
 ●	Microsoft Account with Fabric Enabled
+
 ●	VSCode or any preferred IDE
+
 ●	Be Open Minded 😊
 
 # Section 1: Provisioning Resources with Azure CLI
