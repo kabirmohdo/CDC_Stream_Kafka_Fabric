@@ -495,6 +495,102 @@ Use the code below to create a consumer script and insert data into ElasticSearc
 👉🏽 **Click:** [Consumer Script ElasticSearch](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/consume_elasticsearch.py)
 
 
+👉🏽👉🏽👉🏽👉🏽 
+
+From the image above we can confirm data is been consumed in real time.
+
+## Confirm Streaming
+To confirm everything is working as expected we are going to compare the data in Azure PostgreSQL database and that of the Index ElasticSearch.
+
+### Confirm PostgreSQL View
+We cannot directly query the table as data are being inserted into the table, we need to create a view that we can use in counting the database.
+
+You will notice the number of rows of data inserted into the PostgreSQL table is 119
+
+```
+create view fabric.user_data_view as
+select * from fabric.user_data
+– - Create a view from and existing table
+select  count(*) from fabric.user_data_view
+```
+👉🏽👉🏽👉🏽 
+
+### Confirm ElasticSearch Index Count
+Using the command GET /user_data_index_new/_count?pretty we can get the total number of rows. http://localhost:5601/
+
+👉🏽👉🏽👉🏽 
+
+### View Data in ElasticSearch
+With this command below we can get the value of 10 records in the ElasticSearch index.
+```
+GET /user_data_index_new/_search?pretty
+{
+
+  "query": {
+
+    "match_all": {}
+
+  },        
+
+  "size": 10
+
+}
+```
+
+👉🏽👉🏽👉🏽 
+
+## Create a Kibana Dashboard for ElasticSearch Index 
+Elasticsearch data is visualized and analyzed using Kibana, a potent open-source data visualization tool. It offers an intuitive user interface for examining and comprehending patterns, trends, and anomalies in data.
+
+The following steps should be followed in setting up the Kibana Dashboard:
+
+### Step 1: Create an Index Pattern
+Kibana Index Patterns are a fundamental concept that allows you to organize and visualize your data stored in Elasticsearch. They serve to define how Kibana should interpret and group your data based on specific criteria.
+
+In your ElasticSearch site expand the pane and click on the Dashboard, this should open another window.
+
+👉🏽👉🏽👉🏽 
+
+In the new window select the Create new dashboard this should take you to the visualization tab.
+
+👉🏽👉🏽👉🏽 
+
+Using the Wildcard to select the ElasticSearch Index created.
+
+👉🏽👉🏽👉🏽 
+
+### Step 2: Discovery
+The discovery gives you a better way to visualize the data in ElasticSearch index either in a Tables or JSON format.
+
+👉🏽👉🏽👉🏽 
+
+Expand the records to get more information about the data.
+
+👉🏽👉🏽👉🏽 
+
+### Step 3: Create Visualization
+Click on Create Visualization this should take you to the design area.
+👉🏽👉🏽👉🏽 
+
+Create as much visualization if needed.
+
+## Create Consumer to Azure Data Lake Gen 2
+Microsoft Azure offers a highly scalable and reasonably priced data lake storage solution called Azure Data Lake Gen 2. Its numerous features and ability to manage large volumes of data, both structured and unstructured, make it appropriate for a broad range of machine learning and data analytics tasks.
+
+### Step 1: Generate SAS Token
+In your Azure Data Lake Gen 2 expand the Security & networking and select the Shared access signature. Pick the data and click generate SAS and Connectiong Strings.
+
+
+
+👉🏽👉🏽👉🏽 
+
+
+
+
+
+
+
+
 
 
 
