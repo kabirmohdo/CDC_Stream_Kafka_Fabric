@@ -174,6 +174,36 @@ Superuser Privileges: Ensure that the PostgreSQL user you’re using for Debeziu
 ```
 ALTER USER temidayo WITH REPLICATION;
 ```
+# Section 2: Setting up Docker-compose.yml file for the CDC streaming process
+Now that we have successfully provisioned all the necessary resources let's get started by setting up the environment needed for the process.
+
+## Create a Virtual Environment in Python
+In Python, a virtual environment is a segregated setting where you can install and maintain packages apart from your system-wide installation. This lessens the likelihood of conflicts arising from several projects requiring various versions of the same package.
+
+The command below is used in creating a folder in Python needed for our project.
+👉🏽👉🏽 
+
+Create a virtual Python environment with the command below, this will create a subfolder in our project directory.
+```
+python -m venv fabric_env
+```
+
+Once the virtual environment is created you need to activate it with this command below.
+```
+fabric_env\Scripts\activate
+```
+
+👉🏽👉🏽 
+
+## Create Docker-Compose.yml File for Project
+We need to set up all the necessary resources for the project by creating a docker file that has a container that houses all our images.
+
+Multiple Docker containers can be defined and configured as a single application using a Docker Compose file, which is a YAML file. It enables you to control and plan the start, stop, and start-up of numerous connected containers.
+
+Create a new file called docker-compose.yml in your project folder and put in the following command.
+👉🏽👉🏽👉🏽 
+
+
 
 
 
