@@ -1,0 +1,11 @@
+requests
+pandas
+sqlalchemy
+psycopg2-binary
+python-dotenv
+kafka-python
+elasticsearch
+azure-storage-file-datalake
+azure-identity
+azure-eventhub
+requests
