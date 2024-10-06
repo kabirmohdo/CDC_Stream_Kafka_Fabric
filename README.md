@@ -14,8 +14,11 @@ The Analytic Department uses Microsoft Power BI for reporting, and you also want
 This project will be divided into several sections to aid readers in understanding.
 
 ●	**Section 1:** Provisioning the necessary resources in Azure using Azure CLI
+
 ●	**Section 2:** Setting up Docker-compose.yml file for CDC streaming process.
+
 ●	**Section 3:** Setting up the CDC streaming process in Microsoft Fabric.
+
 ●	**Section 4:** Setting up a RAG model in Fabric Notebook using Open API Key and Tokens.
 
 ## Prerequisite
