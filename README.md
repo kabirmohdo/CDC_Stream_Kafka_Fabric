@@ -478,6 +478,24 @@ curl -X PUT "http://localhost:9200/user_data_index_new" -H "Content-Type: applic
 }'
 ```
 
+👉🏽👉🏽👉🏽 
+
+You will notice a new index has been created in ElasticSearch called user_data_index.
+
+👉🏽👉🏽👉🏽 
+
+You can use the command below to confirm the ElasticSearch Index Created.
+```
+curl -X GET -x "" "localhost:9200/user_data_index_new?pretty"
+```
+
+### Consumer Script
+Use the code below to create a consumer script and insert data into ElasticSearch Index created.
+
+👉🏽 **Click:** [Consumer Script ElasticSearch](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/consume_elasticsearch.py)
+
+
+
 
 
 
