@@ -584,6 +584,110 @@ In your Azure Data Lake Gen 2 expand the Security & networking and select the Sh
 
 👉🏽👉🏽👉🏽 
 
+### Step 2: Consumer Script to ADLS
+Create a consumer script that would be used in picking data from the Kafka topic and sending to Azure Storage Account.
+
+👉🏽 **Click:** [Consumer_Script_ADLS](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/consumer_adls.py)
+
+### Step 3: Confirm Update
+Head to your Azure Storage account and confirm the data update. From the image, you will notice a successful upload to the storage account.
+
+👉🏽👉🏽👉🏽 
+
+# Section 3: Setting up the CDC streaming process in Microsoft Fabric
+At this point we are going to add an Azure PostgreSQL Database as a CDC source for EventStream in Microsoft Fabric. Link
+
+**The following steps should be followed:**
+
+### Step 1: Create a Fabric workspace in Power BI Service
+
+In your Power BI account create a workspace that can be use in housing the entire Fabric resource.
+
+In the new workspace you are expected to add a new item called EventStream. This Item is like Apache Kafka but for streaming purposes.
+
+👉🏽👉🏽👉🏽 
+
+### Step 2: Select and Configure Source
+
+You are expected to add a data source for EventStream, since we connect Azure PostgreSQL we will be using the PostgreSQL database as our source.
+
+👉🏽👉🏽👉🏽
+
+Select your database, use this database as testing.
+
+👉🏽👉🏽👉🏽 
+
+In the new windows select the new connection to configure the entire set-up needed.
+
+👉🏽👉🏽👉🏽 
+
+Add all the necessary credentials for of the Azure PostgreSQL and connect.
+
+👉🏽👉🏽👉🏽 
+
+👉🏽👉🏽👉🏽 
+
+### Step 3: View Data
+After making all necessary connections you can view your data by selecting the data preview in EventStream.
+
+👉🏽👉🏽👉🏽 
+
+👉🏽👉🏽👉🏽 
+
+### Step 4: Create EventHouse
+This will be used in creating a KQL Database for storing the stream data and building real-time report using KQL language.
+
+👉🏽👉🏽👉🏽 
+
+
+### Issues with CDC in Fabric EventStream ⚠️
+This feature is amazing for CDC in the enterprise approach, the only issue I found was the PostgreSQL Database does not support multiple slots.
+
+The previous slot used for the Debezium connector affected the connection and setting for Fabric CDC for PostgreSQL. I had to provision a new server to solve this issue.
+
+## Option 2: Send Data to Custom App EventStream from Producer
+Due to the Slot issue with Debezium, let's send data directly from the API to Fabric EventStream by creating a custom App producer.
+
+### Step 1: Set Custom App
+In the same workspace create a new EventStream and provide a unique name for processing.
+
+👉🏽👉🏽👉🏽 
+
+Then select Use Custom endpoint for your producer.
+
+👉🏽👉🏽👉🏽👉🏽 
+
+You are expected to provide your endpoint with a name then click on add.
+
+👉🏽👉🏽👉🏽 
+
+### Step 2: Create a Producer App
+
+Firstly we need to get some security settings before sending data to our app. Copy the EventHub name and connection string-primary key and play it in a secure location. We are using the environment variable in our Python code.
+
+👉🏽👉🏽👉🏽 
+
+Below is the code used in sending data from the API to EventStream in Fabric.
+
+👉🏽 **Click:** [EventHub Script Fabric](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/producer_eventhub.py)
+
+### Step 3: Test Streaming Data
+
+Let's test and confirm streaming data to Fabric EventStream. From the image below we can confirm data are being streamed in real-time to Fabric EventStream from our producer application.
+
+👉🏽👉🏽👉🏽 
+
+### Step 4: Set [KQL Visualization](https://learn.microsoft.com/en-us/kusto/query/tutorials/learn-common-operators?view=microsoft-fabric)
+We need to perform some queries and set visualization using the KQL Database in Fabric.
+
+Start by clicking the dropdown on the last tab and select EventHouse which is used in storing the KQL database.
+
+
+
+
+
+
+
 
 
 
