@@ -205,6 +205,81 @@ Create a new file called docker-compose.yml in your project folder and put in th
 
 👉🏽 **Click:** [Docker-compose.yml](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/docker-compose.yml)
 
+### Docker-compose.yml Breakdown
+
+**Elasticsearch**
+●	Image: Uses the official Elasticsearch image version 7.17.9.
+●	Environment Variables:
+    ○	discovery.type=single-node: Configures Elasticsearch to run in single-node mode, suitable for development.
+    ○	ES_JAVA_OPTS=-Xms512m -Xmx512m: Sets Java heap size to 512 MB for both minimum and maximum.
+●	Ports: Exposes ports 9200 (HTTP) and 9300 (transport).
+●	Networks: Connects to app-network.
+
+**Kibana**
+●	Image: Uses the official Kibana image version 7.17.9.
+●	Environment Variables:
+    ○	ELASTICSEARCH_HOSTS=http://elasticsearch:9200: Configures Kibana to connect to the Elasticsearch service.
+●	Ports: Exposes port 5601 for accessing Kibana's web interface.
+●	Depends On: Ensures that Elasticsearch starts before Kibana.
+●	Networks: Connects to app-network.
+
+**Zookeeper**
+●	Image: Uses the latest Wurstmeister Zookeeper image.
+●	Ports: Exposes port 2181, which is used by Kafka for coordination.
+●	Networks: Connects to app-network.
+
+**Kafka**
+●	Image: Uses the latest Wurstmeister Kafka image.
+●	Ports:
+    ○	9092: Internal listener for Kafka.
+    ○	9093: External listener for clients connecting from outside the Docker network.
+●	Environment Variables:
+    ○	Configures listeners and security protocols for internal and external communication.
+    ○	Connects to Zookeeper at zookeeper:2181.
+    ○	Creates a default topic named debezium-topic with 3 partitions and 1 replica.
+●	Depends On: Ensures Zookeeper starts before Kafka.
+●	Networks: Connects to app-network.
+
+**Debezium**
+●	Image: Uses the Debezium connector image version 2.2.
+●	Hostname and Container Name: Set to "debezium".
+●	Ports: Exposes port 8083 for the Debezium REST API.
+●	Environment Variables:
+    ○	Configures connection settings for Kafka and storage topics for connector configurations and offsets.
+    ○	Specifies JSON converters for key and value serialization.
+●	Depends On: Requires Kafka and Elasticsearch to start first.
+●	Healthcheck: Checks if the Debezium service is healthy by querying its connectors endpoint.
+●	Networks: Connects to app-network.
+
+**Debezium UI**
+●	Image: Uses the Debezium UI image version 2.2.
+●	Ports: Exposes port 8080 for accessing the Debezium UI web interface.
+●	Environment Variables:
+    ○	Specifies the URI of the Debezium service for configuration access.
+●	Depends On: Waits until the Debezium service is healthy before starting.
+●	Networks: Connects to app-network.
+
+**Networks**
+By using the bridge driver to define a single network called app-network, all services can communicate with one another.
+
+### Start Docker
+To start our docker-compose.yml file we are going to use the command below to achieve this. The process might take a couple of minutes depending on your internet connection.
+
+```
+docker-compose up -d
+```
+
+## Create a Producer App
+The producer will be used to send real-time data to the Azure PostgreSQL database. The idea around this scenario is that if transactions happen in the database it is inserted realtime into the PostgreSQL database.
+
+⚠️**Disclaimer:** Due to the fact we cannot get a working application, we would create a scenario for a real-time producer app using Python Script.
+
+### Step 1: Install Necessary Libraries
+Create a requirements.txt file in the same project folder to install all necessary libraries. These are the libraries that would be needed for the project.
+
+
+
+
 
 
 
