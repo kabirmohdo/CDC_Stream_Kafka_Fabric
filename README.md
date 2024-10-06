@@ -357,6 +357,124 @@ Debezium is an open-source distributed platform for Change Data Capture. Its pur
 ●	Integration with Kafka: Makes use of Kafka's capabilities for streaming and distributed processing.
 
 ### Step 1: Create New Connection
-Ensure your Docker Desktop is still running then perform the following connection. Open your browser and enter the url http://localhost:8080/ which is the debezium UI url.
+Ensure your Docker Desktop is still running then perform the following connection. Open your browser and enter the url http://localhost:8080/ which is the debezium UI URL.
+
+👉🏽👉🏽👉🏽 
+
+In the new window select the database we want to use to perform CDC. We will be using PostgreSQL for our project.
+
+👉🏽👉🏽 
+
+In the connection setting you’re expected to fill in the necessary credentials for the PostgreSQL Server.
+
+👉🏽👉🏽👉🏽👉🏽 
+
+Change the Replication to pgoutput then click on Validation to test and validate our connection.
+
+👉🏽👉🏽👉🏽 
+
+👉🏽👉🏽👉🏽👉🏽 
+
+At the end of the connection, you should get debezium running and capturing data real-time from PostgreSQL
+
+👉🏽👉🏽👉🏽 
+
+## Setup Kafka Topic
+Now that our debezium is up and running as expected we need to set Kafka topic which will be used in receiving the data from debezium.
+
+**Note:** By default Debezium would create a Kafka topic for use from which to read the data.
+
+### View Kafka Topic
+Using the command below in our VSCode terminal we can list all available topics in Kafka broker.
+
+```
+docker-compose exec kafka kafka-topics.sh --list --bootstrap-server kafka:9092
+```
+
+👉🏽👉🏽👉🏽 
+
+With the command we can locate the topic the data is being sent to in Kafka topic which is deb_conn.fabric.user_data.
+
+### Consumer Kafka Topic
+
+Using the command below to consume data realtime from Kafka topic in our terminal.
+
+```
+docker-compose exec kafka kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic deb_conn.fabric.user_data --from-beginning
+```
+
+👉🏽👉🏽👉🏽 
+
+The image below shows that we can consume data from Kafka Topic that is being sent by debezium in realtime.
+
+## Create a Consumer Script to ElasticSearch
+
+Before creating consumer script we first need to create an Index in ElasticSearch that will be used in storing the data and querying it. In your Terminal open WSL - Window Subsystem for Linux which will be used in creating the Index with the datatype mappings.
+
+```
+curl -X PUT "http://localhost:9200/user_data_index_new" -H "Content-Type: application/json" -d'
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "name": {
+        "type": "text",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "gender": {
+        "type": "keyword"
+      },
+      "address": {
+        "type": "text"
+      },
+      "latitude": {
+        "type": "double"
+      },
+      "longitude": {
+        "type": "double"
+      },
+      "timezone": {
+        "type": "keyword"
+      },
+      "email": {
+        "type": "keyword"
+      },
+      "phone": {
+        "type": "keyword"
+      },
+      "cell": {
+        "type": "keyword"
+      },
+      "date_of_birth": {
+        "type": "date"
+      },
+      "registered_date": {
+        "type": "date"
+      },
+      "picture_url": {
+        "type": "keyword"
+      },
+      "insertion_time": {
+        "type": "date"
+      }
+    }
+  }
+}'
+```
+
+
+
+
 
 
