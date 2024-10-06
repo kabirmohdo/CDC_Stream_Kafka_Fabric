@@ -682,6 +682,74 @@ We need to perform some queries and set visualization using the KQL Database in 
 
 Start by clicking the dropdown on the last tab and select EventHouse which is used in storing the KQL database.
 
+👉🏽👉🏽👉🏽 
+
+We are using a direct query so fill in the following information.
+
+👉🏽👉🏽👉🏽 
+
+Publish to save all changes, this should take a couple of minutes depending on your internet speed.
+
+👉🏽👉🏽👉🏽
+
+Perform the necessary configuration for Eventhouse.
+
+👉🏽👉🏽👉🏽 
+
+View the KQL Database by clicking on the Open Item
+
+👉🏽👉🏽👉🏽 
+
+### Step 5: Build Near-Real time Report
+Expand the table you are streaming data into and let visualize better.
+
+👉🏽👉🏽👉🏽 
+
+Query your data using KQL and get the desired output then select the Power BI tab at the right corner of your report.
+
+👉🏽👉🏽👉🏽 
+
+Build your near realtime report with the streaming data.
+
+👉🏽👉🏽👉🏽 
+
+# Section 4: Create a Fabric Pipeline
+
+The Microsoft Fabric Pipeline is the same as the Azure Data Factory and Synapse Pipeline with much similarity. Some knowledge in any of the previous can easily be transferred to this use case.
+
+We plan to move the entire data from Azure Data Lake Gen 2 to Fabric Lakehouse Files folder by using a Pipeline.
+
+**The following set should be followed to achieve this:**
+
+### Step 1: Set Source Connection
+In the same workspace create a Pipeline and add the copy activity which will be used in our configuration process.
+
+To connect to the Azure Data Lake Gen 2 which is our source you can get the DFS endpoint using the Azure Storage Explorer.
+
+👉🏽👉🏽👉🏽 
+
+With the endpoint gotten fill in the following connection configuration below and use the SAS token generated earlier when sending data to Azure Data Lake from Kafka Topic.
+
+👉🏽👉🏽👉🏽 
+
+After setting up all necessary connection save your work and run Pipeline.
+
+👉🏽👉🏽👉🏽 
+
+### Step 2: Test and Confirm Data Movement
+Run the pipeline to confirm if data loaded as expected.
+
+👉🏽👉🏽👉🏽 
+
+Head to the Fabric Lakehouse and confirm data load.
+
+👉🏽👉🏽👉🏽 
+
+# Section 5: Create a RAG Model using Azure OpenAI 
+
+
+
+
 
 
 
