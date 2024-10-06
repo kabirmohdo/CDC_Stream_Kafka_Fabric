@@ -39,4 +39,18 @@ The following step should be followed to create a data lake gen 2 using the Azur
 
 ### Step 1: Login and Select Azure Account
 After successfully logging in to Azure you should get the following subscription information.
+👉🏽 Image
+
+### Step 2: Create Resource Group
+In Azure, similar resources are logically contained under resource groups. It's a method for jointly managing and organizing your Azure resources. Consider it as a directory or folder where you can organize and store resources with similar lifecycles or purposes.
+
+First, let's start by selecting the subscription ID in your Azure Portal, selecting the subscription, and picking the copy of the subscription ID information.
+
+👉🏽👉🏽
+
+With the subscription id head to your Azure CLI and put in the following information.
+```Python
+az account set --subscription "YourSubscriptionId"
+```
+
 
