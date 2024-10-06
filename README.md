@@ -317,14 +317,46 @@ The producer will be used to send real-time data to the Azure PostgreSQL databas
 ### Step 1: Install Necessary Libraries
 Create a requirements.txt file in the same project folder to install all necessary libraries. These are the libraries that would be needed for the project.
 
+👉🏽👉🏽 
 
+### Step 2: Create a Producer Script
+With docker up and running we need to create a Producer script that will be picking data from a website, converting it to a dataframe, and inserting it into a PostgreSQL database table called user_data.
 
+👉🏽 **Click:** [Producer Script](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/producer.py)
 
+### Step 3: Test Producer Script
+After successfully creating the script let's test it by running it on our VSCode with the line of code below.
 
+👉🏽👉🏽👉🏽
 
+From the image, you would notice data are being inserted into our PostgreSQL Database.
 
+👉🏽👉🏽👉🏽 
 
+## Setup CDC with Debezium
+Debezium is an open-source distributed platform for Change Data Capture. Its purpose is to record changes in databases at the row level and transmit these changes as events. Applications can now respond in real-time to changes in data, opening a variety of use cases, including:
 
+●	Data synchronization between databases or systems is known as data replication.
 
+●	Event-driven architectures: Activating programs in response to modifications in a database.
+
+●	Data warehousing: Adding new data to data warehouses.
+
+●	Analyzing data as it changes is known as real-time analytics.
+
+**Key attributes and advantages of Debezium:**
+
+●	Real-time data streaming: Sends updates to Kafka topics in real-time as they happen. 
+
+●	Durability: Makes sure that, even in the event of failures, no data is lost. 
+
+●	Scalability: Able to manage numerous databases and substantial data volumes. 
+
+●	Flexibility: Supports several different databases, such as Oracle, PostgreSQL, MySQL, and others. 
+
+●	Integration with Kafka: Makes use of Kafka's capabilities for streaming and distributed processing.
+
+### Step 1: Create New Connection
+Ensure your Docker Desktop is still running then perform the following connection. Open your browser and enter the url http://localhost:8080/ which is the debezium UI url.
 
 
