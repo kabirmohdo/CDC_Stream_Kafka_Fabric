@@ -198,7 +198,7 @@ Once the virtual environment is created you need to activate it with this comman
 fabric_env\Scripts\activate
 ```
 
-👉🏽👉🏽 
+![activate_env](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/7.png)
 
 ## Create Docker-Compose.yml File for Project
 We need to set up all the necessary resources for the project by creating a docker file that has a container that houses all our images.
@@ -206,7 +206,7 @@ We need to set up all the necessary resources for the project by creating a dock
 Multiple Docker containers can be defined and configured as a single application using a Docker Compose file, which is a YAML file. It enables you to control and plan the start, stop, and start-up of numerous connected containers.
 
 Create a new file called docker-compose.yml in your project folder and put in the following command.
-👉🏽👉🏽👉🏽 
+![docker-compose.yml](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/8.png)
 
 👉🏽 **Click:** [Docker-compose.yml](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/docker-compose.yml)
 
@@ -322,7 +322,8 @@ The producer will be used to send real-time data to the Azure PostgreSQL databas
 ### Step 1: Install Necessary Libraries
 Create a requirements.txt file in the same project folder to install all necessary libraries. These are the libraries that would be needed for the project.
 
-👉🏽👉🏽 
+![libraries](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/9.png)
+
 
 ### Step 2: Create a Producer Script
 With docker up and running we need to create a Producer script that will be picking data from a website, converting it to a dataframe, and inserting it into a PostgreSQL database table called user_data.
