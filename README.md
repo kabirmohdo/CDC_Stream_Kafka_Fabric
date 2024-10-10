@@ -45,14 +45,14 @@ The following step should be followed to create a data lake gen 2 using the Azur
 ### Step 1: Login and Select Azure Account
 After successfully logging in to Azure you should get the following subscription information.
 
-👉🏽 Image
+![Account_Login_CLI](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/2.png)
 
 ### Step 2: Create Resource Group
 In Azure, similar resources are logically contained under resource groups. It's a method for jointly managing and organizing your Azure resources. Consider it as a directory or folder where you can organize and store resources with similar lifecycles or purposes.
 
 First, let's start by selecting the subscription ID in your Azure Portal, selecting the subscription, and picking the copy of the subscription ID information.
 
-👉🏽👉🏽
+![Subscription_ID](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/3.png)
 
 With the subscription id head to your Azure CLI and put in the following information.
 ```
@@ -65,7 +65,7 @@ Now that we have our subscription select use the command below to create a new r
 az group create --name YourResourceGroupName --location YourLocation
 ```
 
-👉🏽👉🏽
+![Create_Resource_Group](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/4.png)
 
 ### Step 3: Create a Storage Account
 The below CLI command will be used in creating a Data Lake Gen 2 storage account in Azure with the necessary formations.
@@ -83,7 +83,7 @@ az storage fs create --name YourFileSystemName --account-name YourStorageAccount
 ## Step 4: Set Service Principal in Azure Contain
 We may establish a service principle that will have access to the Azure Data Lake Gen and be able to obtain the required credentials, including Client ID, Tenant ID, and Client Secret, by using the Azure CLI.
 
-👉🏽👉🏽 
+![Service_Principal](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/5.png)
 
 ### Set Permission
 We must grant the following permission to the built app to have access to Azure Storage after obtaining the required credentials.
@@ -186,7 +186,7 @@ Now that we have successfully provisioned all the necessary resources let's get 
 In Python, a virtual environment is a segregated setting where you can install and maintain packages apart from your system-wide installation. This lessens the likelihood of conflicts arising from several projects requiring various versions of the same package.
 
 The command below is used in creating a folder in Python needed for our project.
-👉🏽👉🏽 
+![Virtual_Env](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/6.png)
 
 Create a virtual Python environment with the command below, this will create a subfolder in our project directory.
 ```
