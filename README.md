@@ -852,6 +852,143 @@ We can also confirm that this data has indeed been written to a Delta Table by r
 
 👉🏽👉🏽 
 
+## Creating the Delta Table Assitant
+
+In this section, we aim to create an AI capable of answering questions based on the information provided in the table created in the previous section. To achieve this, we follow these steps:
+1.	Create Working Environment and install packages
+2.	Create config files
+3.	Reasoning behind the code
+4.	Code walkthrough
+5.	Brief demonstration
+
+## Create Working Environment and install packages
+To begin creating the AI Table Assistant on Microsoft Fabric, we need to first create a new environment as the default environment comes preinstalled with an older version of OpenAI and we need to also install other packages to aid the development.
+First go to your workspace and click on “New” on the top left corner of your screen.
+Click on “More Options” and then in the next window, scroll down till you are at the Data Science section and click on Notebook.
+
+👉🏽👉🏽 
+
+This brings you to a new notebook. In the new notebook, select the dropdown arrow in the “Environment” tab at the top of the screen. 
+Click on “New environment”. Give the new environment a name.
+
+👉🏽👉🏽 
+
+In the new environment window, type in the names of the packages required.
+
+👉🏽👉🏽 
+
+👉🏽👉🏽 
+
+Click on save and then publish.
+
+👉🏽👉🏽 
+
+### Create config Files
+In the window of the new notebook, you will see a left pane with the following items Resources, Lakehouses, and Warehouses. 
+
+👉🏽👉🏽 
+
+We are using a Lakehouse for this scenario so select Lakehouse. If no Lakehouses pop up, you can click on the Add Lakehouse icon and select an existing Lakehouse or create a new one.
+Click on the ellipsis to the right of the “Files” icon and create a new subfolder and name it “config_files”. This subfolder will host the credentials required for this section.
+
+👉🏽👉🏽 
+
+Next, open up a notepad or any text editing software and input your Azure OpenAI credentials
+
+👉🏽👉🏽 
+
+Save the file with any name you want with the extension, .env
+Go back to Fabric and click on the ellipsis next to config_files, the subfolder just created, and select upload files. 
+Search for the .env file and select it.
+Once uploaded, we can proceed to start coding.
+
+
+## Reasoning behind the code
+The logic behind the code is given below:
+Information about the table such as its column names, data types, and what values each column contains is given to the AI as part of the context of its prompt. The AI is also fed instructions about how to answer the questions asked. The AI will return the relevant SQL query to query the table in order to answer the questions. This query response is then parsed and cleaned before being passed into a Pyspark read command. Once the output table is generated, it is converted to a Python dictionary and fed into the AI once more to generate a summary of the data returned.
+
+## Code Walkthrough:
+Start the session by clicking on the connect icon:
+
+👉🏽👉🏽 
+
+Import the relevant libraries
+
+👉🏽👉🏽 
+
+Load the credentials from the .env file created earlier
+
+👉🏽👉🏽 
+
+If this cell returns True, then, the load_dotenv method has loaded up the credentials in the .env file
+Instantiate the ENDPOINT, API_KEY, API_VERSION, MODEL_NAME from the .env file
+
+👉🏽👉🏽 
+
+Load the spark dataframe
+
+👉🏽👉🏽 
+
+We get the following table:
+
+👉🏽👉🏽 
+
+Next, we define a prompt template where all the prompts used by the LLM will be stored. This template is created using an enum class
+The template consists of 4 simple prompts. They are:
+a.	tableSchema: This just contains basic information about the Hive table such as the column name, data type, and column description.
+
+👉🏽👉🏽 
+
+b.	select Table: This tells the LLM what type of information is in the table, the table schema, the user’s question (i.e. the prompt) and other instructions on how the result I expect from the LLM should look like.
+
+👉🏽👉🏽 
+
+c.	summarizeTable: This prompts the LLM to give a summary of the information in the table in light of the initial prompt given.
+
+👉🏽👉🏽 
+
+d.	badPromptError: This is a default message returned when the prompt asked has nothing to do with the table.
+
+👉🏽👉🏽 
+
+Next, we move on to the cell that contains all the LLM interactions.
+a.	`get_openai_client`:
+This function simply helps to create the Azure OpenAI client 
+
+👉🏽👉🏽 
+
+b.	`‘instruction_type_select`:
+This function helps to select which prompt template to use. It will be used in other functions in deciding how the LLM should be prompted. The available instructions are “select” which maps to the selectTable prompt in the PromptTemplae Enum class and “summarize” which maps to the summarizeTable prompt in the same Enum class.
+
+👉🏽👉🏽 
+
+c.	`generate_instruction`:
+This function is used to generate the instruction actually sent to the LLM. We have defined a prompt template. It takes in the prompt (i.e. the user query) and then couples it with the text from the PromptTemplate Enum class to form a complete instruction set for the LLM. If the LLM is providing the SQL query for answering the user’s question, then, instruction type is “select” as described earlier. When the resulting table has been generated, it is converted to a dictionary and is passed into this same generate_instruction function as `prompt_result` in which case, the instruction_type switches to “summarize” and instructions to summarize the resuting table is sent to the LLM.
+
+👉🏽👉🏽 
+
+d.	`get_gpt_response`:
+This function takes in the generated instruction set - a combination of the user’s query and the correct prompt template -  and sends it to the LLM
+
+👉🏽👉🏽 
+
+e.	`parse_gpt_response`:
+This function cleans the response received from the LLM.
+
+👉🏽👉🏽 
+
+f.	`generate_gpt_dataframe`:
+This function is used to return the resulting dataframe from SQL query received and cleaned from the LLM.
+
+👉🏽👉🏽 
+
+g.	`convert_gpt_dataframe_to_dict`:
+This function is simply responsible for converting the resulting dataframe if it exists to a dictionary which is in turn passed down to the LLM for summarization.
+
+👉🏽👉🏽
+
+
+
 
 
 
