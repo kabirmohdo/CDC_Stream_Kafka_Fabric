@@ -747,6 +747,114 @@ Head to the Fabric Lakehouse and confirm data load.
 
 # Section 5: Create a RAG Model using Azure OpenAI 
 
+## Transforming and Loading JSON Files.
+The `JSON` data being streamed into OneLake needs to be transformed into a tabular format for easier reading, visualization, and LLM interaction which will be configured later.
+When you open up an empty Notebook, on the left pane of the window, we find all the files we are looking for in the Lakehouse
+In the window of the new notebook, you will see a left pane with the following items Resources, Lakehouses, and Warehouses. 
+
+👉🏽👉🏽 
+
+We are using a Lakehouse for this scenario so select Lakehouse. If no Lakehouses pop up, you can click on the Add Lakehouse icon and select an existing Lakehouse or create a new one. In our case, the Lakehouse already exists and when we open it up, we find the user_folder directory which contains all the `JSON` files being streamed into the Lakehouse.
+
+👉🏽👉🏽 
+
+Now, let’s switch attention to the Notebook and its content. This notebook will define all the libraries and functions used to perform all the transformations necessary for cleaning the data and writing it to a Delta Table.
+
+## Code Walkthrough
+### Import relevant Libraries
+
+👉🏽👉🏽 
+
+### Define Sequence Map and Sequence Mapper
+
+👉🏽👉🏽👉🏽 
+
+The sequence map is used to indicate which step in the transformation is taking place in real-time. The sequence mapper is a python decorator that will be used along with all the functions we use for performing the transformations and will apply the sequence map on each function accordingly.
+
+### Transformation Functions
+All the functions used for the transformations are listed below:
+1.	read_data:
+This function reads JSON data from the specified ABFSS filepath into a Spark DataFrame.
+
+👉🏽👉🏽 
+
+2.	extract_payload:
+Extracts the payload from a Spark DataFrame by dropping unnecessary columns     and converting it to a list of dictionaries. This function removes the "schema" column from the DataFrame and converts the resulting DataFrame to a list of dictionaries, where each dictionary represents a record.
+
+👉🏽👉🏽 
+
+3.	parse_payload:
+Parses a list of payload dictionaries to extract main information. This function iterates over the provided list of payloads, attempting to extract the "after" portion of the payload. If a KeyError occurs (i.e., the expected structure is not present), the function will skip that payload.
+
+👉🏽👉🏽 
+
+4.	create_schema:
+Creates and returns a Spark DataFrame schema. This function defines the structure of the DataFrame by specifying the column names and their corresponding data types. The schema includes fields for personal information such as name, gender, address, and various timestamps.
+
+👉🏽👉🏽 
+
+5.	create_dataframe_from_parsed_payload:
+Creates a Spark DataFrame from a parsed payload using a specified schema. This function takes a list of parsed payloads and a callable schema maker function to create a DataFrame. The schema maker should return a StructType defining the structure of the DataFrame.
+
+👉🏽👉🏽 
+
+6.	capitalize_columns:
+Capitalizes the names of all columns in a Spark DataFrame. This function iterates over the columns of the input DataFrame and modifies their names to be capitalized.
+
+👉🏽👉🏽 
+
+7.	parse_timestamps:
+Parses a timestamp column in a Spark DataFrame. This function updates the specified column in the DataFrame by converting its values from a Unix timestamp format. If the `date_only` parameter is set to True, the column will be cast to a date type.
+
+👉🏽👉🏽 
+
+8.	split_timezone:
+Splits the timezone column into separate location and offset columns. This function extracts the timezone location and offset from a formatted timezone string in the DataFrame. The original timezone column is removed after extraction.
+
+👉🏽👉🏽 
+
+9.	timezone_hours_from_gmt
+Converts a GMT offset string to total hours and adds it as a new column. This  function defines a helper function to calculate the total hours from a GMT offset string (formatted as "+hh:mm" or "-hh:mm") and applies it to the specified offset column. The result is added as a new column in the DataFrame.
+
+👉🏽👉🏽 
+
+10.	extract_age:
+Calculates the age based on a date column and adds it as a new column. This function converts the specified date column to a date type, calculates the age in years based on the current date, and adds a new column named "Age" to the DataFrame.
+
+👉🏽👉🏽 
+
+11.	final_cleanup:
+Performs final cleanup on the DataFrame by selecting specified columns and adding an ingestion date. This function selects the columns specified in the `cols` list and adds a new column named "Ingestion_Date" with the current timestamp.
+
+👉🏽👉🏽 
+
+12.	write_to_delta:
+Writes the provided DataFrame to a specified Delta table. This function saves the input DataFrame to a Delta table with the specified name, using the "overwrite" mode to replace any existing data in the table.
+
+👉🏽👉🏽 
+
+Final Result
+Putting it all together, we have:
+
+👉🏽👉🏽 
+
+👉🏽👉🏽 
+
+After running the commands, we should have the following printed out to console:
+
+👉🏽👉🏽 
+
+We can read the final result stored in the `transform_df` variable
+
+👉🏽👉🏽 
+
+We can also confirm that this data has indeed been written to a Delta Table by refreshing the tables folder on the left pane under our Lakehouse. The `user_data`should appear as seen below:
+
+👉🏽👉🏽 
+
+
+
+
 
 
 
