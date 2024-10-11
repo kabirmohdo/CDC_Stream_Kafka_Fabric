@@ -333,11 +333,11 @@ With docker up and running we need to create a Producer script that will be pick
 ### Step 3: Test Producer Script
 After successfully creating the script let's test it by running it on our VSCode with the line of code below.
 
-👉🏽👉🏽👉🏽
+![test](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/10.png)
 
 From the image, you would notice data are being inserted into our PostgreSQL Database.
 
-👉🏽👉🏽👉🏽 
+![PostgreSQL_Insert](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/11.png)
 
 ## Setup CDC with Debezium
 Debezium is an open-source distributed platform for Change Data Capture. Its purpose is to record changes in databases at the row level and transmit these changes as events. Applications can now respond in real-time to changes in data, opening a variety of use cases, including:
@@ -365,25 +365,23 @@ Debezium is an open-source distributed platform for Change Data Capture. Its pur
 ### Step 1: Create New Connection
 Ensure your Docker Desktop is still running then perform the following connection. Open your browser and enter the url http://localhost:8080/ which is the debezium UI URL.
 
-👉🏽👉🏽👉🏽 
+![debezium](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/12.png)
 
 In the new window select the database we want to use to perform CDC. We will be using PostgreSQL for our project.
 
-👉🏽👉🏽 
+![Postgresql](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/13.png)
 
 In the connection setting you’re expected to fill in the necessary credentials for the PostgreSQL Server.
 
-👉🏽👉🏽👉🏽👉🏽 
+![advanced](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/14.png)
 
 Change the Replication to pgoutput then click on Validation to test and validate our connection.
 
-👉🏽👉🏽👉🏽 
-
-👉🏽👉🏽👉🏽👉🏽 
+![pgout](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/15.png)
 
 At the end of the connection, you should get debezium running and capturing data real-time from PostgreSQL
 
-👉🏽👉🏽👉🏽 
+![validate](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/16.png)
 
 ## Setup Kafka Topic
 Now that our debezium is up and running as expected we need to set Kafka topic which will be used in receiving the data from debezium.
