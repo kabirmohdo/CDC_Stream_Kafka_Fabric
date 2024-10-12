@@ -775,81 +775,79 @@ All the functions used for the transformations are listed below:
 1.	read_data:
 This function reads JSON data from the specified ABFSS filepath into a Spark DataFrame.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/67.png) 
 
 2.	extract_payload:
 Extracts the payload from a Spark DataFrame by dropping unnecessary columns     and converting it to a list of dictionaries. This function removes the "schema" column from the DataFrame and converts the resulting DataFrame to a list of dictionaries, where each dictionary represents a record.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/68.png) 
 
 3.	parse_payload:
 Parses a list of payload dictionaries to extract main information. This function iterates over the provided list of payloads, attempting to extract the "after" portion of the payload. If a KeyError occurs (i.e., the expected structure is not present), the function will skip that payload.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/69.png) 
 
 4.	create_schema:
 Creates and returns a Spark DataFrame schema. This function defines the structure of the DataFrame by specifying the column names and their corresponding data types. The schema includes fields for personal information such as name, gender, address, and various timestamps.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/70.png) 
 
 5.	create_dataframe_from_parsed_payload:
 Creates a Spark DataFrame from a parsed payload using a specified schema. This function takes a list of parsed payloads and a callable schema maker function to create a DataFrame. The schema maker should return a StructType defining the structure of the DataFrame.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/71.png) 
 
 6.	capitalize_columns:
 Capitalizes the names of all columns in a Spark DataFrame. This function iterates over the columns of the input DataFrame and modifies their names to be capitalized.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/72.png) 
 
 7.	parse_timestamps:
 Parses a timestamp column in a Spark DataFrame. This function updates the specified column in the DataFrame by converting its values from a Unix timestamp format. If the `date_only` parameter is set to True, the column will be cast to a date type.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/73.png) 
 
 8.	split_timezone:
 Splits the timezone column into separate location and offset columns. This function extracts the timezone location and offset from a formatted timezone string in the DataFrame. The original timezone column is removed after extraction.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/74.png) 
 
 9.	timezone_hours_from_gmt
 Converts a GMT offset string to total hours and adds it as a new column. This  function defines a helper function to calculate the total hours from a GMT offset string (formatted as "+hh:mm" or "-hh:mm") and applies it to the specified offset column. The result is added as a new column in the DataFrame.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/75.png)  
 
 10.	extract_age:
 Calculates the age based on a date column and adds it as a new column. This function converts the specified date column to a date type, calculates the age in years based on the current date, and adds a new column named "Age" to the DataFrame.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/76.png) 
 
 11.	final_cleanup:
 Performs final cleanup on the DataFrame by selecting specified columns and adding an ingestion date. This function selects the columns specified in the `cols` list and adds a new column named "Ingestion_Date" with the current timestamp.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/77.png) 
 
 12.	write_to_delta:
 Writes the provided DataFrame to a specified Delta table. This function saves the input DataFrame to a Delta table with the specified name, using the "overwrite" mode to replace any existing data in the table.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/78.png) 
 
 Final Result
 Putting it all together, we have:
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/79.png) 
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/80.png) 
 
 After running the commands, we should have the following printed out to console:
 
-👉🏽👉🏽 
-
 We can read the final result stored in the `transform_df` variable
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/81.png) 
 
 We can also confirm that this data has indeed been written to a Delta Table by refreshing the tables folder on the left pane under our Lakehouse. The `user_data`should appear as seen below:
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/82.png) 
 
 ## Creating the Delta Table Assitant
 
@@ -865,36 +863,36 @@ To begin creating the AI Table Assistant on Microsoft Fabric, we need to first c
 First go to your workspace and click on “New” on the top left corner of your screen.
 Click on “More Options” and then in the next window, scroll down till you are at the Data Science section and click on Notebook.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/83.png)  
 
 This brings you to a new notebook. In the new notebook, select the dropdown arrow in the “Environment” tab at the top of the screen. 
 Click on “New environment”. Give the new environment a name.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/84.png)  
 
 In the new environment window, type in the names of the packages required.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/85.png) 
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/86.png) 
 
 Click on save and then publish.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/87.png) 
 
 ### Create config Files
 In the window of the new notebook, you will see a left pane with the following items Resources, Lakehouses, and Warehouses. 
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/88.png) 
 
 We are using a Lakehouse for this scenario so select Lakehouse. If no Lakehouses pop up, you can click on the Add Lakehouse icon and select an existing Lakehouse or create a new one.
 Click on the ellipsis to the right of the “Files” icon and create a new subfolder and name it “config_files”. This subfolder will host the credentials required for this section.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/89.png) 
 
 Next, open up a notepad or any text editing software and input your Azure OpenAI credentials
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/90.png) 
 
 Save the file with any name you want with the extension, .env
 Go back to Fabric and click on the ellipsis next to config_files, the subfolder just created, and select upload files. 
@@ -909,82 +907,93 @@ Information about the table such as its column names, data types, and what value
 ## Code Walkthrough:
 Start the session by clicking on the connect icon:
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/91.png) 
 
 Import the relevant libraries
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/92.png) 
 
 Load the credentials from the .env file created earlier
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/93.png) 
 
 If this cell returns True, then, the load_dotenv method has loaded up the credentials in the .env file
 Instantiate the ENDPOINT, API_KEY, API_VERSION, MODEL_NAME from the .env file
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/94.png) 
 
 Load the spark dataframe
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/95.png) 
 
 We get the following table:
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/96.png) 
 
 Next, we define a prompt template where all the prompts used by the LLM will be stored. This template is created using an enum class
 The template consists of 4 simple prompts. They are:
 a.	tableSchema: This just contains basic information about the Hive table such as the column name, data type, and column description.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/97.png) 
 
 b.	select Table: This tells the LLM what type of information is in the table, the table schema, the user’s question (i.e. the prompt) and other instructions on how the result I expect from the LLM should look like.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/98.png)  
 
 c.	summarizeTable: This prompts the LLM to give a summary of the information in the table in light of the initial prompt given.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/99.png) 
 
 d.	badPromptError: This is a default message returned when the prompt asked has nothing to do with the table.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/100.png) 
 
 Next, we move on to the cell that contains all the LLM interactions.
 a.	`get_openai_client`:
 This function simply helps to create the Azure OpenAI client 
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/101.png) 
 
 b.	`‘instruction_type_select`:
 This function helps to select which prompt template to use. It will be used in other functions in deciding how the LLM should be prompted. The available instructions are “select” which maps to the selectTable prompt in the PromptTemplae Enum class and “summarize” which maps to the summarizeTable prompt in the same Enum class.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/102.png) 
 
 c.	`generate_instruction`:
 This function is used to generate the instruction actually sent to the LLM. We have defined a prompt template. It takes in the prompt (i.e. the user query) and then couples it with the text from the PromptTemplate Enum class to form a complete instruction set for the LLM. If the LLM is providing the SQL query for answering the user’s question, then, instruction type is “select” as described earlier. When the resulting table has been generated, it is converted to a dictionary and is passed into this same generate_instruction function as `prompt_result` in which case, the instruction_type switches to “summarize” and instructions to summarize the resuting table is sent to the LLM.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/103.png) 
 
 d.	`get_gpt_response`:
 This function takes in the generated instruction set - a combination of the user’s query and the correct prompt template -  and sends it to the LLM
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/104.png) 
 
 e.	`parse_gpt_response`:
 This function cleans the response received from the LLM.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/105.png) 
 
 f.	`generate_gpt_dataframe`:
 This function is used to return the resulting dataframe from SQL query received and cleaned from the LLM.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/106.png) 
 
 g.	`convert_gpt_dataframe_to_dict`:
 This function is simply responsible for converting the resulting dataframe if it exists to a dictionary which is in turn passed down to the LLM for summarization.
 
-👉🏽👉🏽
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/107.png) 
+
+## Brief Demonstration:
+Combining all these elements together, we have:
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/108.png) 
+
+Results:
+
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/109.png) 
+
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/110.png) 
+
 
 
 
