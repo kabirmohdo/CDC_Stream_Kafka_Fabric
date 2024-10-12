@@ -548,30 +548,32 @@ Kibana Index Patterns are a fundamental concept that allows you to organize and 
 
 In your ElasticSearch site expand the pane and click on the Dashboard, this should open another window.
 
-![index](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/20.png)
+![index_pattern](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/26.png)
 
 In the new window select the Create new dashboard this should take you to the visualization tab.
 
-👉🏽👉🏽👉🏽 
+![new_dashboard](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/27.png)
 
 Using the Wildcard to select the ElasticSearch Index created.
 
-👉🏽👉🏽👉🏽 
+![index_wildcard](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/28.png)
 
 ### Step 2: Discovery
 The discovery gives you a better way to visualize the data in ElasticSearch index either in a Tables or JSON format.
 
-👉🏽👉🏽👉🏽 
+![discovery](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/29.png)
 
 Expand the records to get more information about the data.
 
-👉🏽👉🏽👉🏽 
+![expand](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/30.png)
 
 ### Step 3: Create Visualization
 Click on Create Visualization this should take you to the design area.
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/31.png) 
 
 Create as much visualization if needed.
+
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/32.png) 
 
 ## Create Consumer to Azure Data Lake Gen 2
 Microsoft Azure offers a highly scalable and reasonably priced data lake storage solution called Azure Data Lake Gen 2. Its numerous features and ability to manage large volumes of data, both structured and unstructured, make it appropriate for a broad range of machine learning and data analytics tasks.
