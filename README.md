@@ -8,7 +8,7 @@ In company XYZ Limited your AppDev(Software Department) currently has a web appl
 
 The Analytic Department uses Microsoft Power BI for reporting, and you also want to capture the same data of CDC in Microsoft using the Microsoft Fabric component available. The architecture below explains the entire process and what we aim to achieve.
 
-![Architecture](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/1.png)
+![Architecture](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/archiecture.png)
 
 # Project Sections
 This project will be divided into several sections to aid readers in understanding.
