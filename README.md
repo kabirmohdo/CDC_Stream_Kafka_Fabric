@@ -994,6 +994,9 @@ Results:
 
 ![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/110.png) 
 
+# Conclusion
+In this project, we covered multiple scenarios on how to perform a CDC using Open Source Technology with Kafka and Debezium and Enterprise solution using Microsoft Fabric technology. We also integrated the solution by creating a near-to-real-time data dashboard solution.
+
 
 
 
