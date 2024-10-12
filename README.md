@@ -494,7 +494,7 @@ Use the code below to create a consumer script and insert data into ElasticSearc
 👉🏽 **Click:** [Consumer Script ElasticSearch](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/consume_elasticsearch.py)
 
 
-👉🏽👉🏽👉🏽👉🏽 
+![confirm](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/21.png)
 
 From the image above we can confirm data is been consumed in real time.
 
@@ -512,12 +512,12 @@ select * from fabric.user_data
 – - Create a view from and existing table
 select  count(*) from fabric.user_data_view
 ```
-👉🏽👉🏽👉🏽 
+![count](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/22.png)
 
 ### Confirm ElasticSearch Index Count
 Using the command GET /user_data_index_new/_count?pretty we can get the total number of rows. http://localhost:5601/
 
-👉🏽👉🏽👉🏽 
+![elastic_count](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/24.png)
 
 ### View Data in ElasticSearch
 With this command below we can get the value of 10 records in the ElasticSearch index.
@@ -536,7 +536,7 @@ GET /user_data_index_new/_search?pretty
 }
 ```
 
-👉🏽👉🏽👉🏽 
+![last_10](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/25.png)
 
 ## Create a Kibana Dashboard for ElasticSearch Index 
 Elasticsearch data is visualized and analyzed using Kibana, a potent open-source data visualization tool. It offers an intuitive user interface for examining and comprehending patterns, trends, and anomalies in data.
@@ -548,7 +548,7 @@ Kibana Index Patterns are a fundamental concept that allows you to organize and 
 
 In your ElasticSearch site expand the pane and click on the Dashboard, this should open another window.
 
-👉🏽👉🏽👉🏽 
+![index](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/20.png)
 
 In the new window select the Create new dashboard this should take you to the visualization tab.
 
