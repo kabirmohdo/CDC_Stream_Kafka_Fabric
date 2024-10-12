@@ -581,9 +581,7 @@ Microsoft Azure offers a highly scalable and reasonably priced data lake storage
 ### Step 1: Generate SAS Token
 In your Azure Data Lake Gen 2 expand the Security & networking and select the Shared access signature. Pick the data and click generate SAS and Connectiong Strings.
 
-
-
-👉🏽👉🏽👉🏽 
+![token](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/33.png) 
 
 ### Step 2: Consumer Script to ADLS
 Create a consumer script that would be used in picking data from the Kafka topic and sending to Azure Storage Account.
@@ -593,7 +591,7 @@ Create a consumer script that would be used in picking data from the Kafka topic
 ### Step 3: Confirm Update
 Head to your Azure Storage account and confirm the data update. From the image, you will notice a successful upload to the storage account.
 
-👉🏽👉🏽👉🏽 
+![update](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/35.png) 
 
 # Section 3: Setting up the CDC streaming process in Microsoft Fabric
 At this point we are going to add an Azure PostgreSQL Database as a CDC source for EventStream in Microsoft Fabric. Link
@@ -606,39 +604,39 @@ In your Power BI account create a workspace that can be use in housing the entir
 
 In the new workspace you are expected to add a new item called EventStream. This Item is like Apache Kafka but for streaming purposes.
 
-👉🏽👉🏽👉🏽 
+![workspace](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/36.png) 
 
 ### Step 2: Select and Configure Source
 
 You are expected to add a data source for EventStream, since we connect Azure PostgreSQL we will be using the PostgreSQL database as our source.
 
-👉🏽👉🏽👉🏽
+![source](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/37.png) 
 
 Select your database, use this database as testing.
 
-👉🏽👉🏽👉🏽 
+![databae](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/38.png) 
 
 In the new windows select the new connection to configure the entire set-up needed.
 
-👉🏽👉🏽👉🏽 
+![connection](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/39.png) 
 
 Add all the necessary credentials for of the Azure PostgreSQL and connect.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/40.png) 
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/41.png) 
 
 ### Step 3: View Data
 After making all necessary connections you can view your data by selecting the data preview in EventStream.
 
-👉🏽👉🏽👉🏽 
+![view](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/42.png) 
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/43.png) 
 
 ### Step 4: Create EventHouse
 This will be used in creating a KQL Database for storing the stream data and building real-time report using KQL language.
 
-👉🏽👉🏽👉🏽 
+![eventhouse](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/44.png) 
 
 
 ### Issues with CDC in Fabric EventStream ⚠️
@@ -652,21 +650,21 @@ Due to the Slot issue with Debezium, let's send data directly from the API to Fa
 ### Step 1: Set Custom App
 In the same workspace create a new EventStream and provide a unique name for processing.
 
-👉🏽👉🏽👉🏽 
+![custom_app](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/45.png) 
 
 Then select Use Custom endpoint for your producer.
 
-👉🏽👉🏽👉🏽👉🏽 
+![endpoint](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/46.png) 
 
 You are expected to provide your endpoint with a name then click on add.
 
-👉🏽👉🏽👉🏽 
+![endpoint](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/47.png)  
 
 ### Step 2: Create a Producer App
 
 Firstly we need to get some security settings before sending data to our app. Copy the EventHub name and connection string-primary key and play it in a secure location. We are using the environment variable in our Python code.
 
-👉🏽👉🏽👉🏽 
+![peoducer_app](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/48.png) 
 
 Below is the code used in sending data from the API to EventStream in Fabric.
 
@@ -676,43 +674,43 @@ Below is the code used in sending data from the API to EventStream in Fabric.
 
 Let's test and confirm streaming data to Fabric EventStream. From the image below we can confirm data are being streamed in real-time to Fabric EventStream from our producer application.
 
-👉🏽👉🏽👉🏽 
+![test](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/49.png) 
 
 ### Step 4: Set [KQL Visualization](https://learn.microsoft.com/en-us/kusto/query/tutorials/learn-common-operators?view=microsoft-fabric)
 We need to perform some queries and set visualization using the KQL Database in Fabric.
 
 Start by clicking the dropdown on the last tab and select EventHouse which is used in storing the KQL database.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/50.png) 
 
 We are using a direct query so fill in the following information.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/51.png) 
 
 Publish to save all changes, this should take a couple of minutes depending on your internet speed.
 
-👉🏽👉🏽👉🏽
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/52.png) 
 
 Perform the necessary configuration for Eventhouse.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/53.png) 
 
 View the KQL Database by clicking on the Open Item
 
-👉🏽👉🏽👉🏽 
+![KQL](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/54.png) 
 
 ### Step 5: Build Near-Real time Report
 Expand the table you are streaming data into and let visualize better.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/55.png) 
 
 Query your data using KQL and get the desired output then select the Power BI tab at the right corner of your report.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/56.png) 
 
 Build your near realtime report with the streaming data.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/57.png) 
 
 # Section 4: Create a Fabric Pipeline
 
@@ -727,24 +725,24 @@ In the same workspace create a Pipeline and add the copy activity which will be 
 
 To connect to the Azure Data Lake Gen 2 which is our source you can get the DFS endpoint using the Azure Storage Explorer.
 
-👉🏽👉🏽👉🏽 
+![credentials](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/58.png) 
 
 With the endpoint gotten fill in the following connection configuration below and use the SAS token generated earlier when sending data to Azure Data Lake from Kafka Topic.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/59.png) 
 
 After setting up all necessary connection save your work and run Pipeline.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/60.png) 
 
 ### Step 2: Test and Confirm Data Movement
 Run the pipeline to confirm if data loaded as expected.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/61.png) 
 
 Head to the Fabric Lakehouse and confirm data load.
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/62.png) 
 
 # Section 5: Create a RAG Model using Azure OpenAI 
 
@@ -753,22 +751,22 @@ The `JSON` data being streamed into OneLake needs to be transformed into a tabul
 When you open up an empty Notebook, on the left pane of the window, we find all the files we are looking for in the Lakehouse
 In the window of the new notebook, you will see a left pane with the following items Resources, Lakehouses, and Warehouses. 
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/63.png) 
 
 We are using a Lakehouse for this scenario so select Lakehouse. If no Lakehouses pop up, you can click on the Add Lakehouse icon and select an existing Lakehouse or create a new one. In our case, the Lakehouse already exists and when we open it up, we find the user_folder directory which contains all the `JSON` files being streamed into the Lakehouse.
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/64.png) 
 
 Now, let’s switch attention to the Notebook and its content. This notebook will define all the libraries and functions used to perform all the transformations necessary for cleaning the data and writing it to a Delta Table.
 
 ## Code Walkthrough
 ### Import relevant Libraries
 
-👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/65.png) 
 
 ### Define Sequence Map and Sequence Mapper
 
-👉🏽👉🏽👉🏽 
+![visual](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/66.png) 
 
 The sequence map is used to indicate which step in the transformation is taking place in real-time. The sequence mapper is a python decorator that will be used along with all the functions we use for performing the transformations and will apply the sequence map on each function accordingly.
 
