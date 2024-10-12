@@ -395,7 +395,7 @@ Using the command below in our VSCode terminal we can list all available topics 
 docker-compose exec kafka kafka-topics.sh --list --bootstrap-server kafka:9092
 ```
 
-👉🏽👉🏽👉🏽 
+![view_topics](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/17.png) 
 
 With the command we can locate the topic the data is being sent to in Kafka topic which is deb_conn.fabric.user_data.
 
@@ -407,9 +407,9 @@ Using the command below to consume data realtime from Kafka topic in our termina
 docker-compose exec kafka kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic deb_conn.fabric.user_data --from-beginning
 ```
 
-👉🏽👉🏽👉🏽 
+![verift](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/18.png)
 
-The image below shows that we can consume data from Kafka Topic that is being sent by debezium in realtime.
+The image avove shows that we can consume data from Kafka Topic that is being sent by debezium in realtime.
 
 ## Create a Consumer Script to ElasticSearch
 
@@ -477,11 +477,11 @@ curl -X PUT "http://localhost:9200/user_data_index_new" -H "Content-Type: applic
 }'
 ```
 
-👉🏽👉🏽👉🏽 
+![wls](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/19.png)
 
 You will notice a new index has been created in ElasticSearch called user_data_index.
 
-👉🏽👉🏽👉🏽 
+![index](https://github.com/kiddojazz/CDC_Stream_Kafka_Fabric/blob/master/images/20.png)
 
 You can use the command below to confirm the ElasticSearch Index Created.
 ```
