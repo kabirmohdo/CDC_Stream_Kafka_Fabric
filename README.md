@@ -1,4 +1,7 @@
 # CDC Data Architecture with OpenSource and Microsoft Fabric
+
+📽️ [Full Video of Project](https://youtu.be/pD1wFoxFszQ)
+
 *Real-time data Capturing*
 
 # Introduction
